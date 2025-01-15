@@ -20,7 +20,7 @@ scene.add(heartGroup);
 
 // Load font
 const fontLoader = new FontLoader();
-fontLoader.load('./src/assets/font.json', (font) => {
+fontLoader.load('./font.json', (font) => {
     // Heart parameters
     const t_steps = 30; // 减少点数
     const v_steps = 7;  // 减少点数
