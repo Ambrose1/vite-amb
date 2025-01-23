@@ -19,13 +19,15 @@ export function initRainScene() {
     const urlParams = new URLSearchParams(window.location.search);
     const text = urlParams.get('text') || 'i love you'; // 默认文案
 
-    const texts = text.split(','); // 文案以逗号分隔
+    const textArr = text.split(','); // 文案以逗号分隔
+    const texts = Array(8).fill(textArr).flat();
     const textMeshes = [];
     const fontLoader = new FontLoader();
     fontLoader.load('./font.json', (font) =>{
         // 生成文案
       texts.forEach((text, index) => {
-        const fontSize = Math.random()
+        const fontSize = Math.random() * 5;
+        const height = Math.random() * 8;
         const geometry = new TextGeometry(text, {
             font: font,
             size: fontSize,
@@ -40,7 +42,11 @@ export function initRainScene() {
         const material = new THREE.MeshBasicMaterial({ color: color });
         const mesh = new THREE.Mesh(geometry, material);
 
-        mesh.position.set(-50, index * -10, 0); // 设置初始位置
+        const xpos = -1 * Math.random() * 50;
+        const ypos = -1 * Math.random() * 100;
+        const zpos = Math.random() * 100;
+
+        mesh.position.set(xpos, ypos, zpos); // 设置初始位置
         scene.add(mesh);
 
         textMeshes.push(mesh);
